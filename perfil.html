@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="perfil.css">
+
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Encabezado Limpio (Sin botón de ajustes) -->
+        <header class="main-header">
+            <div class="header-left">
+                <h1>Perfil</h1>
+                <p>Gestiona tu información personal y académica</p>
+            </div>
+             <button id="logoutBtn" class="btn-logout"><i class="fa-solid fa-right-from-bracket" ></i> Cerrar Sesión</button>
+        </header>
+
+        <!-- Contenedor Flexbox Principal -->
+        <div class="profile-grid">
+            
+            <!-- Izquierda: Sidebar Editable -->
+            <aside class="profile-sidebar card">
+                <div class="card-header-sidebar">
+                    <button class="btn-edit">Editar Perfil</button>
+                </div>
+                
+                <div class="avatar-area">
+                    <div class="avatar-container">
+                        <img
+                            src="https://placehold.co/200x200/f1efff/5c3be6?text=%F0%9F%90%B0"
+                            alt="Avatar del estudiante"
+                            class="avatar-img"
+                            id="avatarPreview">
+
+                        <label for="avatarInput" class="btn-edit-avatar" title="Subir foto" aria-label="Subir foto de perfil">
+                            <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        </label>
+                        <input type="file" id="avatarInput" accept="image/*" hidden>
+                    </div>
+
+                    <span class="change-profile-text">Personaliza tu avatar</span>
+
+                    <button type="button" id="btnElegirAnimal" class="btn-animal" aria-expanded="false" aria-controls="selectorAnimales">
+                        🐾 Elegir animalito
+                    </button>
+
+                    <div id="selectorAnimales" class="selector-animales" hidden aria-label="Elige tu animalito">
+                        <button type="button" class="animal-option" data-animal="🐰" aria-label="Conejo">🐰</button>
+                        <button type="button" class="animal-option" data-animal="🐱" aria-label="Gato">🐱</button>
+                        <button type="button" class="animal-option" data-animal="🐶" aria-label="Perro">🐶</button>
+                        <button type="button" class="animal-option" data-animal="🦊" aria-label="Zorro">🦊</button>
+                        <button type="button" class="animal-option" data-animal="🐻" aria-label="Oso">🐻</button>
+                        <button type="button" class="animal-option" data-animal="🐼" aria-label="Panda">🐼</button>
+                        <button type="button" class="animal-option" data-animal="🐸" aria-label="Rana">🐸</button>
+                        <button type="button" class="animal-option" data-animal="🐹" aria-label="Hámster">🐹</button>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <label>Nombre Full</label>
+                    <input type="text" class="sidebar-input" id="nombrePerfil" value="Mario Schonez" disabled>
+                </div>
+                <div class="info-group">
+                    <label>Adrecio E-mail</label>
+                    <input type="text" class="sidebar-input" value="takschooljens@gmail.com" disabled>
+                </div>
+                <div class="info-group">
+                    <label>Resumen rápido</label>
+                    <textarea class="sidebar-textarea" disabled>Una descripción de usuario es rápida o para problemas de evaluación. Interesante información.</textarea>
+                </div>
+                
+                <div class="button-row">
+                    <button class="btn-primary btn-save" disabled>Guardar</button>
+                    <button class="btn-cancel btn-action-cancel" disabled>Cancelar</button>
+                </div>
+            </aside>
+
+            <!-- Derecha: Formularios -->
+            <main class="profile-content">
+                
+                <!-- Bloque 1: Información Académica -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-user-graduate"></i> Información Académica</h2>
+                        <button class="btn-edit">Editar</button>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Curso</label>
+                            <input type="text" value="Curso 5" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Institución</label>
+                            <input type="text" value="Institución" disabled>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>ID de estudiante</label>
+                            <input type="text" value="ID-40000022" disabled>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn-primary btn-save" disabled>Guardar</button>
+                        <button class="btn-cancel btn-action-cancel" disabled>Cancelar</button>
+                    </div>
+                </section>
+
+                <!-- Bloque 2: Ajustes de Cuenta -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-user-gear"></i> Ajustes de Cuenta</h2>
+                        <button class="btn-edit">Editar</button>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Curso</label>
+                            <input type="text" value="Curso" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Institución</label>
+                            <select disabled>
+                                <option>Institución</option>
+                                <option>Otra Opción</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>ID de estudiante</label>
+                            <input type="text" value="Estudiante" disabled>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn-primary btn-save" disabled>Guardar</button>
+                        <button class="btn-cancel btn-action-cancel" disabled>Cancelar</button>
+                    </div>
+                </section>
+
+                <!-- Bloque 3: Seguridad y Notificaciones -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-sliders"></i> Ajustes de Cuenta</h2>
+                        <button class="btn-edit">Editar</button>
+                    </div>
+                    <div class="form-grid">
+
+                    </div>
+                    <div class="form-group" style="margin-top: 12px;">
+                        <label>Lenguaje</label>
+                        <select disabled>
+                            <option>Español, Inglés</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-top: 12px;">
+                        <label>Preferencias de notificaciones</label>
+                        <div class="button-row" style="margin-top: 4px;">
+                            <button class="btn-primary btn-save" disabled>Guardar</button>
+                            <button class="btn-cancel btn-action-cancel" disabled>Cancelar</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Bloque 4: Habilidades e Intereses Completamente Editable -->
+<section class="card">
+    <div class="card-header">
+        <h2><i class="fa-solid fa-circle-nodes"></i> Habilidades e Intereses</h2>
+        <button class="btn-edit">Editar</button>
+    </div>
+    <div class="tags-container">
+        <div class="tags-wrapper">
+            <span class="tag">Historia <i class="fa-solid fa-xmark remove-tag"></i></span>
+            <span class="tag">Ensayo <i class="fa-solid fa-xmark remove-tag"></i></span>
+            <span class="tag">Hablar <i class="fa-solid fa-xmark remove-tag"></i></span>
+            <span class="tag">Escribir <i class="fa-solid fa-xmark remove-tag"></i></span>
+            <!-- Campo nuevo para escribir nuevas habilidades -->
+            <input type="text" id="tagInput" placeholder="Añadir..." disabled>
+        </div>
+        <i class="fa-solid fa-chevron-down select-chevron"></i>
+    </div>
+    <div class="button-row">
+        <button class="btn-primary btn-save" disabled>Guardar</button>
+        <button class="btn-cancel btn-action-cancel" disabled>Cancelar</button>
+    </div>
+</section>
+
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="perfil.js"></script>
+    <script src="avatar.js" defer></script>
+    <script src="perfil-sync.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TakSchool | Calendario</title>
+
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="calendario.css">
+
+    <!-- Iconos de la barra lateral -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+</head>
+
+<body>
+
+    <!-- Barra lateral compartida con el dashboard -->
+    <aside class="sidebar calendario-sidebar">
+        <div class="logo">
+            tak<span class="azul-resaltado">school</span>
+        </div>
+
+        <nav class="menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="material-symbols-outlined">home</span>
+                Inicio
+            </a>
+
+            <br>
+
+            <a href="tareas.html" class="menu-item">
+                <span class="material-symbols-outlined">assignment</span>
+                Tareas
+            </a>
+
+            <br>
+
+            <a href="calendario.html" class="menu-item active" aria-current="page">
+                <span class="material-symbols-outlined">calendar_month</span>
+                Calendario
+            </a>
+
+            <br>
+
+            <a href="perfil.html" class="menu-item">
+                <span class="material-symbols-outlined">person</span>
+                Perfil
+            </a>
+        </nav>
+
+        <div class="navegador-footer">
+            <img
+                src="img/conejo_saludando.gif"
+                width="250"
+                height="175"
+                alt="Conejo saludando">
+        </div>
+    </aside>
+
+    <div class="app" id="calendario">
+
+        <main class="main-content">
+
+            <header class="page-header">
+                <div>
+                    <h1>Calendario</h1>
+                    <p>Organiza y recuerda tus actividades académicas</p>
+                </div>
+
+                <button class="primary-button" id="newReminderButton">
+                </button>
+                
+            </header>
+
+            <section class="calendar-card">
+
+                <div class="calendar-toolbar">
+
+                    <div class="calendar-navigation">
+                        <button
+                            type="button"
+                            id="previousMonth"
+                            class="navigation-button"
+                            aria-label="Mes anterior">
+                            ‹
+                        </button>
+
+                        <button
+                            type="button"
+                            id="todayButton"
+                            class="today-button">
+                            Hoy
+                        </button>
+
+                        <button
+                            type="button"
+                            id="nextMonth"
+                            class="navigation-button"
+                            aria-label="Mes siguiente">
+                            ›
+                        </button>
+                    </div>
+
+                    <h2 id="monthTitle"></h2>
+
+
+                </div>
+
+                <div class="calendar-weekdays">
+                    <div>DOM</div>
+                    <div>LUN</div>
+                    <div>MAR</div>
+                    <div>MIÉ</div>
+                    <div>JUE</div>
+                    <div>VIE</div>
+                    <div>SÁB</div>
+                </div>
+
+                <div id="calendarGrid" class="calendar-grid"></div>
+
+            </section>
+
+            <section class="upcoming-card">
+
+                <div class="section-header">
+                    <h2>Próximos recordatorios</h2>
+                </div>
+
+                <div id="upcomingList" class="upcoming-list"></div>
+
+            </section>
+
+        </main>
+
+        <aside class="right-panel">
+
+            <section class="quick-view">
+                <h2>Vista rápida</h2>
+
+                <div class="mini-calendar">
+
+                    <div class="mini-header">
+                        <button type="button" id="miniPrevious" aria-label="Mes anterior">
+                            ‹
+                        </button>
+
+                        <strong id="miniMonth"></strong>
+
+                        <button type="button" id="miniNext" aria-label="Mes siguiente">
+                            ›
+                        </button>
+                    </div>
+
+                    <div class="mini-weekdays">
+                        <span>D</span>
+                        <span>L</span>
+                        <span>M</span>
+                        <span>M</span>
+                        <span>J</span>
+                        <span>V</span>
+                        <span>S</span>
+                    </div>
+
+                    <div id="miniCalendarGrid" class="mini-grid"></div>
+
+                </div>
+            </section>
+
+            <section class="events-card">
+                <h2>Próximos eventos</h2>
+
+                <div id="rightEvents" class="right-events"></div>
+            </section>
+
+        </aside>
+
+    </div>
+
+    <!-- Ventana para crear recordatorios -->
+    <div id="reminderModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <h2>Nueva recordatoria</h2>
+                    <p>Agrega una actividad académica.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeModal"
+                    class="close-button"
+                    aria-label="Cerrar">
+                    ×
+                </button>
+            </div>
+
+            <form id="reminderForm">
+
+                <div class="form-group">
+                    <label for="title">Nombre de la actividad</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Ej. Tarea de matemática"
+                        required>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="date">Fecha</label>
+
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Hora</label>
+
+                        <input type="time" id="time" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+
+                    <select id="type">
+                        <option value="tarea">Tarea</option>
+                        <option value="examen">Examen</option>
+                        <option value="proyecto">Proyecto</option>
+                        <option value="estudio">Estudio</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="secondary-button">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Guardar recordatoria
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript externo -->
+    <script src="calendario.js"></script>
+
+</body>
+</html>

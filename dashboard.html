@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takschool</title>
+
+    <link rel="stylesheet" href="app.css">
+
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+        <script src="app.js" defer></script>
+
+ </head>
+
+ <body>
+
+ <div class="navegador">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+
+        <div class="logo">tak<span class="azul-resaltado">school</span></div>
+
+        <nav class="menu">
+            <a href="dashboard.html" class="menu-item active">
+                <span class="material-symbols-outlined">home</span>
+                Inicio
+            </a>
+            <br>
+            <a href="tareas.html" class="menu-item">
+                <span class="material-symbols-outlined">assignment</span>
+                Tareas
+            </a>
+            <br>
+            <a href="calendario.html" class="menu-item">
+                <span class="material-symbols-outlined">calendar_month</span>
+                Calendario
+            </a>
+            <br>
+            <a href="perfil.html" class="menu-item">
+                <span class="material-symbols-outlined">person</span>
+                Perfil
+            </a>
+            <br>
+        </nav>
+
+        <div class="navegador-footer">
+            <img src="img/conejo_saludando.gif"
+             width="250"
+              height="175"
+              alt="Mi GIF animado">
+        </div>
+
+    </aside>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal">
+
+        <!-- ENCABEZADO -->
+        <header class="main-header">
+
+            <div class="welcome-text">
+                <h1>¡Hola, <span id="nombreUsuario">Usuario!</span>
+                     <button
+        type="button"
+        id="editarNombreUsuario"
+        class="btn-editar-nombre"
+        title="Cambiar nombre">
+         <span class="material-symbols-outlined">edit</span>
+                </button>
+    </h1>
+                <p>Resumen de hoy</p>
+            </div>
+            
+                <div class="user-profile">
+
+    <div class="notification-container">
+
+        <span class="material-symbols-outlined icon-bell" id="campana">
+            notifications
+        </span>
+
+
+        <div class="notification-box" id="notificationBox">
+
+            <h3>Notificaciones</h3>
+
+            <div id="notificationList">
+
+                <p>No tienes notificaciones</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+                <div class="avatar" id="avatarHeader" role="img" aria-label="Avatar de perfil"></div>
+
+            </div>
+
+        </header>
+
+
+        <!-- TARJETAS DE RESUMEN -->
+        <section class="tarjeta-de-resumen">
+
+            <div class="card card-purple">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        assignment_late
+                    </span>
+                </div>
+
+                <div class="card-info">
+                    <h3 id="contadorPendientes">0</h3>
+                    <p>Tareas pendientes</p>
+                </div>
+
+            </div>
+
+
+            <div class="card card-green">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        check_circle
+                    </span>
+                </div>
+
+                <div class="card-info">
+                    <h3 id="contadorCompletadas">0</h3>
+                    <p>Tareas completadas</p>
+                </div>
+
+            </div>
+
+
+            <div class="card card-orange">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        calendar_today
+                    </span>
+                </div>
+
+                <div class="card-info">
+                    <h3 id="contadorEventos">0</h3>
+                    <p>Evento hoy</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CALENDARIO Y TAREAS -->
+        <section class="calendario-tareas">
+
+            <!-- CALENDARIO -->
+            <div class="widget calendario">
+
+                <div class="calendar-encabezado">
+
+                    <h2 id="calendarario-mes-año">
+                        Mes Año
+                    </h2>
+
+                    <div class="calendario-navegacion">
+
+                        <button id="prevMonthBtn">
+                            &lt;
+                        </button>
+
+                        <button id="nextMonthBtn">
+                            &gt;
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calendario-dias-encabezado">
+                    <span>L</span>
+                    <span>M</span>
+                    <span>M</span>
+                    <span>J</span>
+                    <span>V</span>
+                    <span>S</span>
+                    <span>D</span>
+                </div>
+
+
+                <div class="calendario-grid" id="calendarioGrid"></div>
+
+
+                <div class="calendario-footer" id="calendarioFooter">
+
+                    <span class="dot-indicator"></span>
+
+                    Hoy es un gran día para aprender
+
+                </div>
+
+            </div>
+
+
+            <!-- PRÓXIMAS TAREAS -->
+            <div class="widget proximas-tareas">
+
+                <h2>Próximas tareas</h2>
+
+                <form id="taskForm" class="task-form">
+
+                    <input
+                        type="text"
+                        id="taskMateria"
+                        placeholder="Materia (ej: Química)"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="taskDescripcion"
+                        placeholder="Descripción de la tarea"
+                        required
+                    >
+
+                    <input
+                        type="date"
+                        id="taskFecha"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn-add-task">
+                        +
+                    </button>
+
+                </form>
+
+
+                <ul class="task-list" id="taskList"></ul>
+
+                <button class="btn-all-tasks" >
+                  <a href="tareas.html" style="text-decoration: none; color: inherit;"> Ver todas las tareas → </a>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+   </div>
+
+   <script src="perfil-sync.js"></script>
+
+<html>

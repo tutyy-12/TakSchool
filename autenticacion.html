@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Takschool - Acceso</title>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+   
+  <!-- TU BARRA DE NAVEGACIÓN ORIGINAL INTACTA -->
+  <header class="navegador">
+    <ul class="menu-central">
+      <li><a href="index.html">INICIO</a></li>
+      <li><a href="index.html#funciones">FUNCIONES</a></li>
+      <li><a href="index.html#beneficios">BENEFICIOS</a></li>
+      <li><a href="index.html#nosotros">NOSOTROS</a></li>
+    </ul>
+    <div class="botones-derecha">
+      <a href="#login" class="btn-login" id="tab-login">Iniciar Sesión</a>
+      <a href="#registro" class="btn-registro" id="tab-registro">Registrarse</a>
+    </div>
+  </header>
+
+  <main class="contenedor-autenticacion">
+
+    <div class="tarjeta-formulario" id="vista-login">
+      <div class="encabezado-formulario">
+        <h2 class="titulo">Iniciar <span class="titulo-resaltado">Sesión</span></h2>
+        <p class="Descripcion-general">Ingresa tus credenciales para acceder a Takschool.</p>
+      </div>
+
+      <form action="#" method="POST" class="formulario-operacion">
+        <div class="grupo-campo">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" required placeholder="ejemplo@takschool.com">
+        </div>
+
+        <div class="grupo-campo">
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" required placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="btn-registro" style="width: 100%; border-radius: 8px !important; margin-top: 15px; cursor: pointer;">
+          Ingresar a mi cuenta
+        </button>
+      </form>
+    </div>
+
+    <!-- TARJETA FORMULARIO REGISTRARSE (Verifica que tus inputs tengan estos IDs) -->
+<div class="tarjeta-formulario oculto" id="vista-registro">
+  <div class="encabezado-formulario">
+    <h2 class="titulo">Crea tu <span class="titulo-resaltado">Perfil</span></h2>
+    <p class="Descripcion-general">Únete como estudiante o profesor para organizar tu futuro.</p>
+  </div>
+
+  <form action="#" method="POST" class="formulario-operacion">
+    <div class="grupo-campo">
+      <label for="reg-nombre">Nombre completo</label>
+      <!-- Agregamos id="reg-nombre" -->
+      <input type="text" id="reg-nombre" required placeholder="Juan Pérez">
+    </div>
+
+    <div class="grupo-campo">
+      <label for="reg-rol">¿Cuál es tu rol?</label>
+      <!-- Agregamos id="reg-rol" -->
+      <select id="reg-rol" required>
+        <option value="" disabled selected>Selecciona tu rol</option>
+        <option value="estudiante">Estudiante</option>
+        <option value="profesor">Profesor / Docente</option>
+      </select>
+    </div>
+
+    <div class="grupo-campo">
+      <label for="reg-email">Correo electrónico</label>
+      <!-- Agregamos id="reg-email" -->
+      <input type="email" id="reg-email" required placeholder="ejemplo@takschool.com">
+    </div>
+
+    <div class="grupo-campo">
+      <label for="reg-password">Contraseña</label>
+      <!-- Agregamos id="reg-password" -->
+      <input type="password" id="reg-password" required placeholder="Mínimo 8 caracteres">
+    </div>
+
+    <button type="submit" class="btn-registro" style="width: 100%; border-radius: 8px !important; margin-top: 15px; cursor: pointer;">
+      Crear mi cuenta escolar
+    </button>
+  </form>
+</div>
+
+  </main>
+
+  
+<script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('sesionActiva')) {
+      window.location.href = 'dashboard.html';
+    }
+  });
+
+  const tabLogin = document.getElementById('tab-login');
+  const tabRegistro = document.getElementById('tab-registro');
+  const vistaLogin = document.getElementById('vista-login');
+  const vistaRegistro = document.getElementById('vista-registro');
+
+  function activarLogin() {
+    if (vistaLogin && vistaRegistro) {
+      vistaLogin.classList.remove('oculto');
+      vistaRegistro.classList.add('oculto');
+    }
+  }
+
+  function activarRegistro() {
+    if (vistaLogin && vistaRegistro) {
+      vistaRegistro.classList.remove('oculto');
+      vistaLogin.classList.add('oculto');
+    }
+  }
+
+  if (tabLogin) {
+    tabLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      activarLogin();
+    });
+  }
+
+  if (tabRegistro) {
+    tabRegistro.addEventListener('click', (e) => {
+      e.preventDefault();
+      activarRegistro();
+    });
+  }
+
+
+  if (window.location.hash === '#registro') {
+    activarRegistro();
+  }
+
+  const formRegistro = vistaRegistro ? vistaRegistro.querySelector('form') : null;
+  const formLogin = vistaLogin ? vistaLogin.querySelector('form') : null;
+
+  // ==========================================
+  // 4. LÓGICA DE REGISTRO Y AUTOGUARDADO
+  // ==========================================
+  if (formRegistro) {
+    formRegistro.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('reg-nombre').value;
+      const rol = document.getElementById('reg-rol').value;
+      const email = document.getElementById('reg-email').value.toLowerCase().trim();
+      const password = document.getElementById('reg-password').value;
+
+      const usuario = {
+        nombre: nombre,
+        rol: rol,
+        email: email,
+        password: password
+      };
+
+      // Guardamos al usuario en la base de datos local
+      localStorage.setItem('usuarioTakschool', JSON.stringify(usuario));
+
+      alert('¡Registro completado con éxito! Tu información se ha guardado de forma segura.');
+      
+      formRegistro.reset();
+      activarLogin(); // Cambia automáticamente a la vista de ingreso
+    });
+  }
+
+   // ==========================================
+  // 5. LÓGICA DE INICIO DE SESIÓN
+  // ==========================================
+  if (formLogin) {
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const emailLogin = document.getElementById('login-email').value.toLowerCase().trim();
+      const passwordLogin = document.getElementById('login-password').value;
+
+      // Credenciales fijas del Administrador
+      const ADMIN_EMAIL = "admin@takschool.com";
+      const ADMIN_PASSWORD = "12345678";
+      const ADMIN_NOMBRE = "Administrador Principal";
+
+      // Caso A: Validar Administrador
+      if (emailLogin === ADMIN_EMAIL && passwordLogin === ADMIN_PASSWORD) {
+        localStorage.setItem('sesionActiva', JSON.stringify({ nombre: ADMIN_NOMBRE, rol: 'Administrador' }));
+        alert(`¡Acceso Concedido! Bienvenido, ${ADMIN_NOMBRE}.`);
+        window.location.href = 'dashboard.html';
+        return;
+      }
+
+      // Caso B: Validar Usuario Registrado en LocalStorage
+      const usuarioGuardado = localStorage.getItem('usuarioTakschool');
+
+      if (usuarioGuardado) {
+        // Convertimos el texto de localStorage de vuelta a un objeto JavaScript
+        const usuario = JSON.parse(usuarioGuardado);
+
+        // Comparamos el correo y la contraseña
+        if (emailLogin === usuario.email && passwordLogin === usuario.password) {
+          localStorage.setItem('sesionActiva', JSON.stringify({ nombre: usuario.nombre, rol: usuario.rol }));
+          alert(`¡Acceso Concedido! Bienvenido, ${usuario.nombre}.`);
+          window.location.href = 'dashboard.html';
+          return;
+        }
+      }
+
+      // Si no entra a ningún Caso, las credenciales son incorrectas
+      alert('Correo o contraseña incorrectos. Por favor, intenta de nuevo.');
+    });
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TakSchool - Tareas</title>
+  <!-- Tu archivo de estilos dedicado -->
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="tareas.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+</head>
+<body>
+
+  <!-- Barra lateral compartida con dashboard y calendario -->
+  <aside class="sidebar tareas-sidebar">
+    <div class="logo">tak<span class="azul-resaltado">school</span></div>
+    <nav class="menu">
+      <a href="dashboard.html" class="menu-item">
+        <span class="material-symbols-outlined">home</span>
+        Inicio
+      </a>
+      <br>
+      <a href="tareas.html" class="menu-item active" aria-current="page">
+        <span class="material-symbols-outlined">assignment</span>
+        Tareas
+      </a>
+      <br>
+      <a href="calendario.html" class="menu-item">
+        <span class="material-symbols-outlined">calendar_month</span>
+        Calendario
+      </a>
+      <br>
+      <a href="perfil.html" class="menu-item">
+        <span class="material-symbols-outlined">person</span>
+        Perfil
+      </a>
+    </nav>
+    <div class="navegador-footer">
+         <img src="img/conejo_saludando.gif" width="250" height="175" alt="Mi GIF animado">
+    </div>
+  </aside>
+
+
+  <div class="contenedor-seccion-tareas">
+    
+    <!-- ENCABEZADO -->
+    <header class="main-header">
+      <div class="welcome-text">
+        <h1>Tareas</h1>
+        <p>Gestiona y organiza tus tareas</p>
+      </div>
+      <!-- Tu botón morado perfectamente enlazado -->
+      <button class="btn-all-tasks" id="btnNuevaTareaKanban">
+        + Nueva tarea/materia
+      </button>
+    </header>
+
+
+    <!-- TABLERO KANBAN TOTALMENTE VACÍO -->
+    <main class="tablero-kanban">
+      
+      <!-- COLUMNA: POR HACER -->
+      <section class="columna-kanban">
+        <div class="columna-titulo">Por hacer</div>
+        <div class="lista-tarjetas-kanban" id="col-por-hacer">
+          <!-- Vacío de fábrica -->
+        </div>
+      </section>
+
+      <!-- COLUMNA: EN PROGRESO -->
+      <section class="columna-kanban">
+        <div class="columna-titulo">En progreso</div>
+        <div class="lista-tarjetas-kanban" id="col-en-progreso">
+          <!-- Vacío de fábrica -->
+        </div>
+      </section>
+
+      <!-- COLUMNA: COMPLETADO -->
+      <section class="columna-kanban">
+        <div class="columna-titulo">Completado</div>
+        <div class="lista-tarjetas-kanban" id="col-completado">
+          <!-- Vacío de fábrica -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+<script src="app.js"></script>
+  <script src="tareas.js"></script>
+</body>
+</html>
+

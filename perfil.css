@@ -1,0 +1,382 @@
+:root {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --primary-color: #3b33d5;
+    --primary-hover: #2a24b3;
+    --border-color: #e2e8f0;
+    --input-bg: #f1f5f9;
+    --tag-bg: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.main-header h1 { font-size: 24px; font-weight: 700; }
+.main-header p { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+
+/* Flexbox base en formato vertical para móviles */
+.profile-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.card-header, .card-header-sidebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.card-header-sidebar {
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.card-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.avatar-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 10px auto 5px auto;
+}
+
+
+/* Botón para elegir un animalito */
+.btn-animal {
+    display: block;
+    width: 100%;
+    margin: 0 auto 18px;
+    padding: 10px;
+    color: #3b33d5;
+    background: #f1efff;
+    border: 1px solid #ddd6fe;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-animal:hover {
+    background: #e4defe;
+}
+
+/* Opciones de animales */
+.selector-animales {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.selector-animales[hidden] {
+    display: none;
+}
+
+.animal-option {
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 4px;
+    font-size: 30px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.animal-option:hover {
+    background: #f1efff;
+    border-color: #5c3be6;
+    transform: scale(1.05);
+}
+
+.animal-option.seleccionado {
+    background: #e4defe;
+    border-color: #3b33d5;
+    box-shadow: 0 0 0 2px #ddd6fe;
+}
+
+.change-profile-text {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.info-group { margin-bottom: 16px; }
+.info-group label { font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px; }
+
+/* Inputs de barra lateral */
+.sidebar-input {
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.2s;
+}
+
+/* Área del resumen alineada */
+.sidebar-textarea {
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    line-height: 1.5;
+    height: 75px;
+    transition: all 0.2s;
+}
+
+.sidebar-input:not(:disabled), .sidebar-textarea:not(:disabled) {
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text-main);
+}
+
+.sidebar-textarea:not(:disabled) {
+    resize: vertical;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.form-group { display: flex; flex-direction: column; }
+
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    font-size: 14px;
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.2s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 51, 213, 0.15); /* Efecto glow sutil */
+}
+
+.input-with-button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+}
+
+.input-with-button input { flex: 1 1 150px; }
+
+button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-primary:hover:not(:disabled) { background-color: var(--primary-hover); }
+.btn-secondary { background-color: var(--bg-card); border: 1px solid var(--border-color); }
+.btn-edit { background: none; border: 1px solid var(--border-color); padding: 6px 12px; color: var(--text-main); }
+.btn-edit:hover { background-color: var(--input-bg); }
+.btn-cancel { background-color: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); }
+.btn-cancel:hover:not(:disabled) { background-color: #f1f5f9; }
+
+.button-row { display: flex; gap: 8px; width: 100%; margin-top: 12px; }
+.button-row button { flex: 1; text-align: center; }
+
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.tags-container {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px;
+    background-color: var(--input-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.tags-container.editable-tags {
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+.tags-wrapper { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+    background-color: var(--tag-bg);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.remove-tag { cursor: pointer; color: var(--text-muted); display: none; }
+.tags-container.editable-tags .remove-tag { display: inline-block; }
+.remove-tag:hover { color: #ef4444; }
+.select-chevron { color: var(--text-muted); font-size: 13px; }
+
+/* ==========================================
+   MEDIA QUERIES - SOLUCIÓN PARA DISPOSITIVOS
+   ========================================== */
+
+/* Celulares medianos/grandes (iPhone 16, Pro Max, etc) */
+@media (min-width: 440px) {
+    .card { padding: 20px; }
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .form-group.full-width { grid-column: span 2; }
+    .button-row button { flex: none; }
+}
+
+/* Tablets y computadoras (iPad Mini en adelante) */
+@media (min-width: 768px) {
+    body { padding: 40px 20px; }
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 280px 1fr; /* Estructura paralela perfecta */
+        gap: 24px;
+    }
+}
+
+#tagInput {
+    border: none !important;
+    background: transparent !important;
+    padding: 4px 8px !important;
+    font-size: 13px;
+    width: auto;
+    flex: 1;
+    min-width: 60px;
+    outline: none;
+}
+
+#tagInput:disabled {
+    display: none;
+}
+/* --- Estilos para la opción de eliminar Habilidades --- */
+.remove-tag {
+    cursor: pointer;
+    color: var(--text-muted);
+    margin-left: 6px; /* Separación entre el texto y la equis */
+    font-size: 14px;
+    font-weight: bold;
+    display: none; /* Por defecto están ocultas hasta presionar Editar */
+    transition: color 0.2s ease;
+}
+
+/* Muestra las equis de eliminar SOLO cuando el bloque esté en modo edición */
+.tags-container.editable-tags .remove-tag {
+    display: inline-block;
+}
+
+.remove-tag:hover {
+    color: #ef4444; /* Cambia a rojo al pasar el mouse por encima */
+}
+/* --- Botón Cerrar Sesión --- */
+.btn-logout {
+    background-color: #fef2f2;
+    color: #ef4444;
+    border: 1px solid #fee2e2;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-logout:hover {
+    background-color: #fee2e2;
+}
+
+
+/* Centrar la foto de perfil */
+.profile-avatar,
+.profile-image,
+.avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Evitar que la imagen se desplace */
+.profile-avatar img,
+.profile-image img,
+.avatar-container img {
+    display: block;
+    max-width: 100%;
+    object-fit: contain;
+}
